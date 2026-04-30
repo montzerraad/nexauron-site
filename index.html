@@ -8,12 +8,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-  /* ضمان أن الصفحة تأخذ العرض الكامل بدون فراغات */
-  * { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-  }
+  /* GLOBAL STYLES */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   
   body { 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -23,7 +19,7 @@
     overflow-x: hidden;
   }
 
-  /* حل مشكلة البنر: جعل النافبار يمتد 100% دائماً */
+  /* FULL-WIDTH NAVBAR FIX */
   header {
     width: 100%;
     background: rgba(0, 0, 0, 0.95);
@@ -34,7 +30,7 @@
   }
 
   nav { 
-    max-width: 1200px; /* تحديد عرض المحتوى داخل النافبار */
+    max-width: 1200px;
     margin: 0 auto;
     display: flex; 
     justify-content: space-between; 
@@ -58,58 +54,68 @@
     font-size: 13px;
     transition: 0.3s; 
   }
-  .nav-links a:hover, .nav-links a.active { background: #00ffd5; color: black; }
+  .nav-links a:hover, .nav-links a.active { background: #00ffd5; color: black; box-shadow: 0 0 15px rgba(0, 255, 213, 0.3); }
 
-  /* قسم الحساب */
+  /* AUTH SECTION */
   .auth-section {
     max-width: 1200px;
-    margin: 10px auto;
+    margin: 15px auto;
     display: flex;
     justify-content: flex-end;
     padding: 0 20px;
+    position: relative;
   }
 
   .login-card {
     background: rgba(255, 255, 255, 0.05);
-    padding: 10px 15px;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
     border: 1px solid #333;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
   }
 
-  .auth-btn { background: none; border: none; color: white; cursor: pointer; font-size: 18px; transition: 0.2s; }
-  .auth-btn.google:hover { color: #db4437; }
-  .auth-btn.github:hover { color: #00ffd5; }
+  .auth-btn { background: none; border: none; color: white; cursor: pointer; font-size: 20px; transition: 0.2s; }
+  .auth-btn.google:hover { color: #db4437; transform: scale(1.1); }
+  .auth-btn.github:hover { color: #00ffd5; transform: scale(1.1); }
 
-  .profile-ui { display: none; align-items: center; cursor: pointer; }
-  .profile-ui img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #00ffd5; }
+  /* PROFILE UI */
+  .profile-ui { display: none; align-items: center; gap: 12px; cursor: pointer; }
+  .profile-ui img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #00ffd5; transition: 0.3s; }
+  .profile-ui img:hover { box-shadow: 0 0 15px rgba(0, 255, 213, 0.5); }
+  .profile-ui span { font-weight: bold; font-size: 14px; }
 
-  /* نافذة معلومات الحساب */
+  /* MODAL */
   .profile-modal {
     display: none;
     position: absolute;
-    top: 130px; /* تعديل مكانها حسب التصميم */
+    top: 70px;
     right: 20px;
     background: #111;
     border: 1px solid #00ffd5;
-    padding: 20px;
-    border-radius: 10px;
-    width: 260px;
+    padding: 25px;
+    border-radius: 15px;
+    width: 280px;
     z-index: 1001;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.9);
   }
 
+  .profile-modal h3 { color: #00ffd5; margin-bottom: 15px; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+  .profile-modal p { margin: 8px 0; font-size: 14px; color: #ccc; }
+  .profile-modal strong { color: white; }
+
   /* HERO */
-  .hero { text-align: center; padding: 100px 20px; }
-  .hero h1 { font-size: clamp(40px, 8vw, 70px); color: #00ffd5; text-shadow: 0 0 20px rgba(0, 255, 213, 0.4); }
-  
-  footer { text-align: center; padding: 30px; color: #555; font-size: 12px; }
+  .hero { text-align: center; padding: 120px 20px; }
+  .hero h1 { font-size: clamp(45px, 10vw, 80px); color: #00ffd5; margin-bottom: 15px; text-shadow: 0 0 30px rgba(0, 255, 213, 0.4); }
+  .hero p { font-size: 1.2rem; color: #aaa; max-width: 700px; margin: 0 auto; }
+
+  footer { text-align: center; padding: 40px; color: #444; font-size: 13px; }
 
   @media (max-width: 768px) {
     nav { flex-direction: column; gap: 15px; }
     .auth-section { justify-content: center; }
+    .profile-modal { right: 50%; transform: translateX(50%); }
   }
 </style>
 </head>
@@ -132,21 +138,23 @@
 
 <div class="auth-section">
   <div class="login-card" id="loginUI">
-    <span style="font-size: 13px;">Sign in:</span>
-    <button class="auth-btn google" onclick="login()"><i class="fab fa-google"></i></button>
-    <button class="auth-btn github" onclick="login()"><i class="fab fa-github"></i></button>
+    <span style="font-size: 14px; color: #888;">Sign in:</span>
+    <button class="auth-btn google" id="googleLogin"><i class="fab fa-google"></i></button>
+    <button class="auth-btn github" id="githubLogin"><i class="fab fa-github"></i></button>
   </div>
 
   <div class="profile-ui" id="profileUI" onclick="toggleModal()">
-    <img src="https://picsum.photos/100" alt="Profile">
+    <span id="displayUserName">User Name</span>
+    <img id="userPhoto" src="" alt="Profile">
   </div>
-</div>
 
-<div class="profile-modal" id="profileModal">
-  <h3 style="color:#00ffd5; margin-bottom: 10px;">Muntadhar Raed</h3>
-  <p style="font-size: 14px; margin: 5px 0;"><strong>Gender:</strong> Male</p>
-  <p style="font-size: 14px; margin: 5px 0;"><strong>Joined:</strong> May 1, 2026</p>
-  <button onclick="logout()" style="width:100%; margin-top:15px; background:#ff0050; border:none; color:white; padding:8px; border-radius:5px; cursor:pointer;">Sign Out</button>
+  <div class="profile-modal" id="profileModal">
+    <h3 id="modalName">Name</h3>
+    <p><strong>Status:</strong> Member</p>
+    <p><strong>Account:</strong> Verified</p>
+    <p id="userJoinDate"><strong>Joined:</strong> Loading...</p>
+    <button id="logoutBtn" style="width:100%; margin-top:20px; background:#ff0050; border:none; color:white; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold;">Sign Out</button>
+  </div>
 </div>
 
 <div class="hero">
@@ -158,41 +166,82 @@
   © 2026 NEXAURON Studios - All Rights Reserved
 </footer>
 
-<script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  // Your actual Firebase configuration provided by you
+  const firebaseConfig = {
+    apiKey: "AIzaSyAAvZJhoEzwwWeVmUpKzyi-d-Rj7kOH7DE",
+    authDomain: "nexauron-web.firebaseapp.com",
+    projectId: "nexauron-web",
+    storageBucket: "nexauron-web.firebasestorage.app",
+    messagingSenderId: "1043958705578",
+    appId: "1:1043958705578:web:00c6d0bc05dc1bfdca8fd3",
+    measurementId: "G-FBRBXV7259"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
+  // Elements
   const loginUI = document.getElementById('loginUI');
   const profileUI = document.getElementById('profileUI');
   const profileModal = document.getElementById('profileModal');
+  const displayUserName = document.getElementById('displayUserName');
+  const userPhoto = document.getElementById('userPhoto');
+  const modalName = document.getElementById('modalName');
+  const userJoinDate = document.getElementById('userJoinDate');
 
-  // ميزة الخزن المحلي (LocalStorage): حتى يبقى مسجل دخول حتى لو دست على اللوجو أو سويت ريفريش
-  if (localStorage.getItem('isLoggedIn') === 'true') {
-    showProfile();
-  }
+  // Google Login Function
+  document.getElementById('googleLogin').onclick = () => {
+    signInWithPopup(auth, googleProvider).catch((error) => console.error(error));
+  };
 
-  function login() {
-    localStorage.setItem('isLoggedIn', 'true');
-    showProfile();
-  }
+  // GitHub Login Function
+  document.getElementById('githubLogin').onclick = () => {
+    signInWithPopup(auth, githubProvider).catch((error) => console.error(error));
+  };
 
-  function logout() {
-    localStorage.setItem('isLoggedIn', 'false');
-    location.reload(); // إعادة تحميل الصفحة ليرجع لشكل تسجيل الدخول
-  }
+  // Logout Function
+  document.getElementById('logoutBtn').onclick = () => {
+    signOut(auth).then(() => location.reload());
+  };
 
-  function showProfile() {
-    loginUI.style.display = 'none';
-    profileUI.style.display = 'flex';
-  }
+  // Observe Auth State Change
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      loginUI.style.display = 'none';
+      profileUI.style.display = 'flex';
+      
+      // Setting User Data from Google/GitHub
+      displayUserName.innerText = user.displayName;
+      modalName.innerText = user.displayName;
+      userPhoto.src = user.photoURL || 'https://via.placeholder.com/100';
+      
+      // Formatting Join Date
+      const date = new Date(user.metadata.creationTime);
+      userJoinDate.innerHTML = `<strong>Joined:</strong> ${date.toLocaleDateString()}`;
+    } else {
+      loginUI.style.display = 'flex';
+      profileUI.style.display = 'none';
+    }
+  });
 
-  function toggleModal() {
+  // Modal Toggle Logic
+  window.toggleModal = () => {
     profileModal.style.display = (profileModal.style.display === 'block') ? 'none' : 'block';
-  }
+  };
 
-  // إغلاق النافذة إذا ضغطت بمكان برة
-  window.onclick = function(event) {
+  // Close modal when clicking outside
+  window.onclick = (event) => {
     if (!event.target.closest('#profileUI') && !event.target.closest('#profileModal')) {
       profileModal.style.display = 'none';
     }
-  }
+  };
 </script>
 
 </body>
