@@ -3,27 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXAURON | Gaming Studios</title>
+<title>NEXAURON | Home</title>
 
 <style>
 body {
-  margin:0;
+  margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: radial-gradient(circle at top, #0f2027, #000000);
   color: white;
-  scroll-behavior: smooth;
+  min-height: 100vh;
 }
 
 /* NAVBAR */
 nav {
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding:15px 40px;
-  background: rgba(0,0,0,0.9);
-  position:sticky;
-  top:0;
-  z-index: 1000;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.9);
   border-bottom: 1px solid #00ffd533;
 }
 
@@ -34,147 +31,74 @@ nav {
   transition: 0.3s;
 }
 
-.logo-link:hover {
-  opacity: 0.8;
-}
+.logo-link:hover { opacity: 0.8; }
 
 .logo-link img {
   height: 50px;
-  margin-right: 15px; /* Modified for LTR */
+  margin-right: 15px;
   border-radius: 8px;
 }
 
 .logo-link h1 {
-  color:#00ffd5;
+  color: #00ffd5;
   margin: 0;
-  font-size: 24px;
+  font-size: 26px;
   letter-spacing: 2px;
 }
 
-nav div a {
-  color:white;
-  margin-left:20px; /* Modified for LTR */
-  text-decoration:none;
+/* NAV LINKS WITH FRAMES */
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
   font-weight: bold;
-  transition: 0.3s;
+  padding: 10px 25px;
+  border: 2px solid #00ffd5;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
-nav div a:hover {
-  color: #00ffd5;
+.nav-links a:hover {
+  background: #00ffd5;
+  color: black;
+  box-shadow: 0 0 15px rgba(0, 255, 213, 0.5);
+  transform: translateY(-2px);
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
-  text-align:center;
-  padding:150px 20px;
+  text-align: center;
+  padding: 150px 20px;
 }
 
 .hero h1 {
-  font-size:70px;
-  color:#00ffd5;
+  font-size: 70px;
+  color: #00ffd5;
   margin-bottom: 10px;
   text-shadow: 0 0 20px rgba(0, 255, 213, 0.5);
 }
 
 .hero p {
-  color:#aaa;
+  color: #aaa;
   font-size: 24px;
   max-width: 800px;
   margin: 10px auto;
 }
 
-/* SECTION */
-.section {
-  padding:80px 20px;
-  text-align:center;
-}
-
-/* GAME CARDS */
-.games {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap: 30px;
-}
-
-.card {
-  background:#111;
-  width:320px;
-  border-radius:20px;
-  overflow:hidden;
-  transition: 0.4s;
-  border: 1px solid #333;
-}
-
-.card:hover {
-  transform:scale(1.05);
-  border-color: #00ffd5;
-  box-shadow: 0 0 30px rgba(0, 255, 213, 0.1);
-}
-
-.card img {
-  width:100%;
-  height: 200px;
-  object-fit: cover;
-  background: #000;
-}
-
-.card h3 {
-  margin:20px 10px 5px;
-  color: #00ffd5;
-}
-
-.card p {
-  color:#ccc;
-  font-size: 14px;
-  margin: 0 15px 15px;
-  line-height: 1.6;
-}
-
-.badge {
-  display: inline-block;
-  background: #ff0050;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.btn {
-  display:inline-block;
-  margin:10px;
-  padding:12px 30px;
-  background:#00ffd5;
-  color:black;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: white;
-  transform: translateY(-3px);
-}
-
 /* FOOTER */
 footer {
-  text-align:center;
-  padding:40px;
-  background:#050505;
-  color:#555;
-  border-top: 1px solid #111;
-}
-
-.email-box {
-  background: rgba(0, 255, 213, 0.05);
+  text-align: center;
   padding: 30px;
-  border-radius: 15px;
-  border: 1px solid #00ffd533;
-  display: inline-block;
-  margin-top: 20px;
+  background: #050505;
+  color: #555;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #111;
 }
 </style>
 </head>
@@ -182,60 +106,21 @@ footer {
 <body>
 
 <nav>
-  <a href="#" class="logo-link">
+  <a href="index.html" class="logo-link">
     <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Logo">
     <h1>NEXAURON</h1>
   </a>
-  <div>
-    <a href="#games">Games</a>
-    <a href="#team">Team</a>
-    <a href="#support">Support</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="team.html">Team</a>
+    <a href="support.html">Support</a>
   </div>
 </nav>
 
 <div class="hero">
   <h1>NEXAURON</h1>
   <p>We bring our games into a perfect atmosphere suitable for everyone.</p>
-</div>
-
-<div id="games" class="section">
-  <h2>🎮 Our Games</h2>
-  <div class="games">
-    
-    <div class="card">
-      <img src="https://via.placeholder.com/400/200/111/00ffd5?text=Zombie+Fight+Logo" alt="Zombie Fight">
-      <h3>Zombie Fight</h3>
-      <p>An intense survival horror experience pushing the boundaries of tension and atmosphere.</p>
-      <span class="badge">In Development 🛠️</span><br>
-      <a class="btn" href="#">Steam Page Soon</a>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/400/200?grayscale" alt="New Project">
-      <h3>New Secret Project</h3>
-      <p>Exploring new genres and dark worlds. Currently in the early conceptual phase.</p>
-      <span class="badge" style="background: #333;">Planning Stage</span><br>
-      <a class="btn" style="background: #333; color: #777; cursor: not-allowed;" href="#">Pending</a>
-    </div>
-
-  </div>
-</div>
-
-<div id="team" class="section" style="background: rgba(255,255,255,0.02);">
-  <h2>👥 Our Team</h2>
-  <div style="font-size: 20px;">
-    <p><strong>Members:</strong> Muntadhar Raed</p>
-  </div>
-</div>
-
-<div id="support" class="section">
-  <h2>✉️ Support & Contact</h2>
-  <p style="color:#aaa; max-width: 600px; margin: 0 auto 10px;">If you encounter any problem, please contact us.</p>
-  
-  <div class="email-box">
-    <p style="margin-bottom: 15px; font-size: 18px;">Send us an email:</p>
-    <a class="btn" href="mailto:rmmm54285@Gmail.com">rmmm54285@Gmail.com</a>
-  </div>
 </div>
 
 <footer>
