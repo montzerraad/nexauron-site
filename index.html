@@ -11,7 +11,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: radial-gradient(circle at top, #0f2027, #000000);
   color: white;
-  scroll-behavior: smooth; /* لحركة نزول ناعمة عند الضغط على الروابط */
+  scroll-behavior: smooth;
 }
 
 /* NAVBAR */
@@ -27,17 +27,24 @@ nav {
   border-bottom: 1px solid #00ffd533;
 }
 
-.logo-container {
+.logo-link {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.logo-container img {
-  height: 50px; /* حجم الشعار المرفوع */
+.logo-link:hover {
+  opacity: 0.8;
+}
+
+.logo-link img {
+  height: 50px;
   margin-left: 15px;
+  border-radius: 8px;
 }
 
-nav h1 {
+.logo-link h1 {
   color:#00ffd5;
   margin: 0;
   font-size: 24px;
@@ -90,7 +97,7 @@ nav div a:hover {
 
 .card {
   background:#111;
-  width:300px;
+  width:320px;
   border-radius:20px;
   overflow:hidden;
   transition: 0.4s;
@@ -107,15 +114,30 @@ nav div a:hover {
   width:100%;
   height: 200px;
   object-fit: cover;
+  background: #000;
 }
 
 .card h3 {
   margin:20px 10px 5px;
+  color: #00ffd5;
 }
 
 .card p {
-  color:#00ffd5;
-  margin-bottom: 20px;
+  color:#ccc;
+  font-size: 14px;
+  margin: 0 15px 15px;
+  line-height: 1.6;
+}
+
+.badge {
+  display: inline-block;
+  background: #ff0050;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .btn {
@@ -135,7 +157,6 @@ nav div a:hover {
   transform: translateY(-3px);
 }
 
-.btn-paypal { background: #00457C; color: white; }
 .btn-kofi { background: #FF5E5B; color: white; }
 
 /* FOOTER */
@@ -146,16 +167,25 @@ footer {
   color:#555;
   border-top: 1px solid #111;
 }
+
+.zain-cash-box {
+  background: #1a1a1a;
+  padding: 15px 30px;
+  border-radius: 12px;
+  border: 2px solid #ff0050;
+  display: inline-block;
+  margin: 10px;
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-  <div class="logo-container">
+  <a href="#" class="logo-link">
     <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Logo">
     <h1>NEXAURON</h1>
-  </div>
+  </a>
   <div>
     <a href="#games">الألعاب</a>
     <a href="#team">الفريق</a>
@@ -165,65 +195,58 @@ footer {
 
 <div class="hero">
   <h1>NEXAURON</h1>
-  <p>نصنع تجارب لا تُنسى في عالم الألعاب</p>
+  <p>نصنع تجارب رعب وبقاء لا تُنسى</p>
 </div>
 
 <div id="games" class="section">
   <h2>🎮 مشاريعنا القادمة</h2>
   <div class="games">
+    
     <div class="card">
-      <img src="https://picsum.photos/400/300?random=1" alt="Zombie Fight">
+      <img src="https://via.placeholder.com/400/200/111/00ffd5?text=Zombie+Fight+Logo" alt="Zombie Fight">
       <h3>Zombie Fight</h3>
-      <p>قيد التطوير (Survival Horror)</p>
-      <a class="btn" href="#">قريباً</a>
+      <p>لعبة رعب وبقاء تأخذك إلى أقصى حدود التوتر. يتم تطويرها باستخدام أحدث تقنيات المحركات.</p>
+      <span class="badge">قيد التطوير 🛠️</span><br>
+      <a class="btn" href="#">قريباً على Steam</a>
     </div>
 
     <div class="card">
-      <img src="https://picsum.photos/400/300?random=2" alt="Project 2">
-      <h3>مشروع سري جديد</h3>
-      <p>مرحلة التصميم</p>
-      <a class="btn" href="#">قريباً</a>
+      <img src="https://picsum.photos/400/200?grayscale" alt="Project 2">
+      <h3 style="color: white;">مشروع سري جديد</h3>
+      <p>تجارب جديدة وعوالم مظلمة في مرحلة التخطيط المبدئي.</p>
+      <span class="badge" style="background: #333;">مرحلة التخطيط</span><br>
+      <a class="btn" style="background: #333; color: #777; cursor: not-allowed;" href="#">قيد الانتظار</a>
     </div>
+
   </div>
 </div>
 
 <div id="team" class="section" style="background: rgba(255,255,255,0.02);">
   <h2>👥 فريق العمل</h2>
-  <p>المؤسس والمطور الرئيسي: <strong>أحمد</strong></p>
+  <p>المؤسس والمطور الرئيسي: <strong>NEXAURON</strong></p>
 </div>
 
 <div id="support" class="section">
-  <h2>☕ ادعم الإبداع</h2>
-  <p style="color:#aaa; max-width: 600px; margin: 0 auto 30px;">نكساورون شركة ناشئة، دعمك يساهم في توفير سيرفرات أفضل وتطوير رسوميات الألعاب.</p>
+  <h2>☕ ادعم تطوير ألعابنا</h2>
+  <p style="color:#aaa; max-width: 600px; margin: 0 auto 30px;">نكساورون شركة ألعاب مستقلة، دعمك يساهم بشكل مباشر في تسريع عملية التطوير.</p>
   
-  <a class="btn btn-paypal" href="https://paypal.me/AhmedNexauron" target="_blank">PayPal</a>
-  <a class="btn btn-kofi" href="https://ko-fi.com/AhmedNexauron" target="_blank">Ko-fi (بدون عمولة)</a>
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; align-items: center;">
+    
+    <div class="zain-cash-box">
+      <h3 style="color: #ff0050; margin: 0 0 10px 0; font-size: 20px;">زين كاش - Zain Cash</h3>
+      <p style="color: white; font-size: 22px; font-weight: bold; margin: 0; letter-spacing: 2px;">07800000000</p>
+      <p style="color: #777; font-size: 13px; margin: 5px 0 0 0;">(رقم المحفظة للدعم المحلي)</p>
+    </div>
+
+    <a class="btn btn-kofi" href="https://ko-fi.com/YourUsername" target="_blank" style="padding: 22px 30px;">
+      ادعمنا عبر Ko-fi (دولي)
+    </a>
+
+  </div>
 </div>
 
 <footer>
   © 2026 NEXAURON Studios - جميع الحقوق محفوظة
-</footer>
-
-</body>
-</html>
-  </div>
-</div>
-
-<!-- TEAM -->
-<div class="section">
-  <h2>👥 Team</h2>
-  <p>Founder: You</p>
-</div>
-
-<!-- SUPPORT -->
-<div class="section">
-  <h2>☕ Support Us</h2>
-  <a class="btn" href="#">Donate</a>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  © 2026 NEXAURON - All Rights Reserved
 </footer>
 
 </body>
