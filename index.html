@@ -5,104 +5,157 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEXAURON | Home</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(circle at top, #0f2027, #000000);
-  color: white;
-  min-height: 100vh;
-}
+  /* GLOBAL STYLES & FIXING MOBILE OVERFLOW */
+  *, *::before, *::after { box-sizing: border-box; }
+  
+  body, html { 
+    margin: 0; 
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: radial-gradient(circle at top, #0f2027, #000000); 
+    color: white; 
+    min-height: 100vh;
+    overflow-x: hidden; /* يمنع ظهور فراغ أبيض أو انقطاع في الموبايل */
+  }
 
-/* NAVBAR */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: rgba(0, 0, 0, 0.9);
-  border-bottom: 1px solid #00ffd533;
-}
+  /* NAVBAR */
+  nav { 
+    display: flex; 
+    flex-wrap: wrap; /* يسمح بنزول العناصر في الشاشات الصغيرة */
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 20px; 
+    background: rgba(0, 0, 0, 0.9); 
+    border-bottom: 1px solid #00ffd533;
+    width: 100%;
+  }
+  
+  .logo-link { display: flex; align-items: center; text-decoration: none; margin-bottom: 10px; }
+  .logo-link img { height: 40px; margin-right: 15px; border-radius: 8px; }
+  .logo-link h1 { color: #00ffd5; margin: 0; font-size: 22px; letter-spacing: 2px; }
+  
+  /* NAV LINKS */
+  .nav-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .nav-links a { 
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    padding: 8px 15px; 
+    border: 1px solid #00ffd5; 
+    border-radius: 8px; 
+    font-size: 14px;
+    transition: all 0.3s ease; 
+  }
+  .nav-links a:hover, .nav-links a.active { 
+    background: #00ffd5; 
+    color: black; 
+    box-shadow: 0 0 10px rgba(0, 255, 213, 0.5); 
+  }
 
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: 0.3s;
-}
+  /* AUTHENTICATION SECTION (LOGIN / PROFILE) */
+  .auth-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 20px;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+  }
 
-.logo-link:hover { opacity: 0.8; }
+  .login-ui {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid #333;
+  }
+  
+  .login-ui span { font-size: 14px; color: #ccc; }
+  
+  .auth-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .auth-btn.google:hover { color: #db4437; transform: scale(1.1); }
+  .auth-btn.github:hover { color: #6e5494; transform: scale(1.1); }
 
-.logo-link img {
-  height: 50px;
-  margin-right: 15px;
-  border-radius: 8px;
-}
+  /* PROFILE ICON UI */
+  .profile-ui {
+    display: none; /* مخفي بالبداية */
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .profile-ui img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #00ffd5;
+    object-fit: cover;
+    transition: 0.3s;
+  }
+  .profile-ui img:hover { box-shadow: 0 0 15px rgba(0, 255, 213, 0.5); }
 
-.logo-link h1 {
-  color: #00ffd5;
-  margin: 0;
-  font-size: 26px;
-  letter-spacing: 2px;
-}
+  /* PROFILE MODAL (DROPDOWN) */
+  .profile-modal {
+    display: none; /* مخفي بالبداية */
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: #111;
+    border: 1px solid #00ffd5;
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    text-align: left;
+  }
 
-/* NAV LINKS WITH FRAMES */
-.nav-links {
-  display: flex;
-  gap: 15px;
-}
+  .profile-modal h3 { color: #00ffd5; margin: 0 0 15px 0; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px;}
+  .profile-modal p { margin: 8px 0; color: #ccc; font-size: 14px; }
+  .profile-modal strong { color: white; }
+  
+  .logout-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 8px;
+    background: #ff0050;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  .logout-btn:hover { background: #cc0040; }
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 25px;
-  border: 2px solid #00ffd5;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
+  /* HERO SECTION */
+  .hero { text-align: center; padding: 80px 20px; }
+  .hero h1 { font-size: 60px; color: #00ffd5; margin-bottom: 10px; text-shadow: 0 0 20px rgba(0, 255, 213, 0.5); }
+  .hero p { color: #aaa; font-size: 20px; max-width: 800px; margin: 10px auto; line-height: 1.5; }
 
-.nav-links a:hover {
-  background: #00ffd5;
-  color: black;
-  box-shadow: 0 0 15px rgba(0, 255, 213, 0.5);
-  transform: translateY(-2px);
-}
+  /* FOOTER */
+  footer { text-align: center; padding: 20px; background: #050505; color: #555; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #111; font-size: 12px;}
 
-/* HERO SECTION */
-.hero {
-  text-align: center;
-  padding: 150px 20px;
-}
-
-.hero h1 {
-  font-size: 70px;
-  color: #00ffd5;
-  margin-bottom: 10px;
-  text-shadow: 0 0 20px rgba(0, 255, 213, 0.5);
-}
-
-.hero p {
-  color: #aaa;
-  font-size: 24px;
-  max-width: 800px;
-  margin: 10px auto;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  background: #050505;
-  color: #555;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid #111;
-}
+  /* RESPONSIVE DESIGN FOR MOBILES */
+  @media (max-width: 600px) {
+    .logo-link { justify-content: center; width: 100%; }
+    .nav-links { width: 100%; }
+    .hero h1 { font-size: 45px; }
+    .login-ui { width: 100%; justify-content: center; }
+  }
 </style>
 </head>
-
 <body>
 
 <nav>
@@ -111,12 +164,34 @@ footer {
     <h1>NEXAURON</h1>
   </a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
+    <a href="index.html" class="active">Home</a>
     <a href="games.html">Games</a>
     <a href="team.html">Team</a>
     <a href="support.html">Support</a>
   </div>
 </nav>
+
+<div class="auth-container">
+  
+  <div class="login-ui" id="loginUI">
+    <span>Sign in / Create account:</span>
+    <button class="auth-btn google" onclick="simulateLogin()"><i class="fab fa-google"></i></button>
+    <button class="auth-btn github" onclick="simulateLogin()"><i class="fab fa-github"></i></button>
+  </div>
+
+  <div class="profile-ui" id="profileUI" onclick="toggleModal()">
+    <img src="https://picsum.photos/100" alt="Profile Picture">
+  </div>
+
+  <div class="profile-modal" id="profileModal">
+    <h3>Muntadhar Raed</h3>
+    <p><strong>Gender:</strong> Male</p>
+    <p><strong>Joined:</strong> May 1, 2026</p>
+    <p><strong>Status:</strong> Developer</p>
+    <button class="logout-btn" onclick="simulateLogout()">Sign Out</button>
+  </div>
+
+</div>
 
 <div class="hero">
   <h1>NEXAURON</h1>
@@ -126,6 +201,42 @@ footer {
 <footer>
   © 2026 NEXAURON Studios - All Rights Reserved
 </footer>
+
+<script>
+  // جلب العناصر من الـ HTML
+  const loginUI = document.getElementById('loginUI');
+  const profileUI = document.getElementById('profileUI');
+  const profileModal = document.getElementById('profileModal');
+
+  // دالة محاكاة تسجيل الدخول
+  function simulateLogin() {
+    loginUI.style.display = 'none'; // إخفاء أزرار التسجيل
+    profileUI.style.display = 'flex'; // إظهار صورة الحساب
+  }
+
+  // دالة إظهار وإخفاء نافذة المعلومات
+  function toggleModal() {
+    if (profileModal.style.display === 'block') {
+      profileModal.style.display = 'none';
+    } else {
+      profileModal.style.display = 'block';
+    }
+  }
+
+  // دالة محاكاة تسجيل الخروج
+  function simulateLogout() {
+    profileModal.style.display = 'none'; // إخفاء النافذة
+    profileUI.style.display = 'none'; // إخفاء الصورة
+    loginUI.style.display = 'flex'; // إرجاع أزرار التسجيل
+  }
+
+  // إخفاء النافذة إذا ضغط المستخدم في أي مكان فارغ بالشاشة
+  window.onclick = function(event) {
+    if (!event.target.closest('.profile-ui') && !event.target.closest('.profile-modal')) {
+      profileModal.style.display = 'none';
+    }
+  }
+</script>
 
 </body>
 </html>
