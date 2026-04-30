@@ -1,58 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXAURON</title>
+<title>NEXAURON | نكساورون</title>
 
 <style>
-
 body {
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: radial-gradient(circle at top, #0f2027, #000000);
   color: white;
+  scroll-behavior: smooth; /* لحركة نزول ناعمة عند الضغط على الروابط */
 }
 
 /* NAVBAR */
 nav {
   display:flex;
   justify-content:space-between;
-  padding:20px;
-  background: rgba(0,0,0,0.7);
+  align-items: center;
+  padding:15px 40px;
+  background: rgba(0,0,0,0.9);
   position:sticky;
   top:0;
+  z-index: 1000;
+  border-bottom: 1px solid #00ffd533;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  height: 50px; /* حجم الشعار المرفوع */
+  margin-left: 15px;
 }
 
 nav h1 {
   color:#00ffd5;
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 2px;
 }
 
-nav a {
+nav div a {
   color:white;
-  margin-left:15px;
+  margin-right:20px;
   text-decoration:none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav div a:hover {
+  color: #00ffd5;
 }
 
 /* HERO */
 .hero {
   text-align:center;
-  padding:100px 20px;
+  padding:150px 20px;
 }
 
 .hero h1 {
-  font-size:60px;
+  font-size:70px;
   color:#00ffd5;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(0, 255, 213, 0.5);
 }
 
 .hero p {
   color:#aaa;
-  margin-top:10px;
+  font-size: 24px;
 }
 
 /* SECTION */
 .section {
-  padding:50px 20px;
+  padding:80px 20px;
   text-align:center;
 }
 
@@ -61,92 +85,127 @@ nav a {
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
+  gap: 30px;
 }
 
 .card {
   background:#111;
-  margin:15px;
-  width:260px;
-  border-radius:15px;
+  width:300px;
+  border-radius:20px;
   overflow:hidden;
-  transition:0.3s;
+  transition: 0.4s;
+  border: 1px solid #333;
 }
 
 .card:hover {
   transform:scale(1.05);
+  border-color: #00ffd5;
+  box-shadow: 0 0 30px rgba(0, 255, 213, 0.1);
 }
 
 .card img {
   width:100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .card h3 {
-  margin:10px;
+  margin:20px 10px 5px;
 }
 
 .card p {
-  color:#aaa;
+  color:#00ffd5;
+  margin-bottom: 20px;
 }
 
 .btn {
   display:inline-block;
   margin:10px;
-  padding:10px 15px;
+  padding:12px 30px;
   background:#00ffd5;
   color:black;
-  border-radius:8px;
+  border-radius:10px;
   text-decoration:none;
+  font-weight: bold;
+  transition: 0.3s;
 }
+
+.btn:hover {
+  background: white;
+  transform: translateY(-3px);
+}
+
+.btn-paypal { background: #00457C; color: white; }
+.btn-kofi { background: #FF5E5B; color: white; }
 
 /* FOOTER */
 footer {
   text-align:center;
-  padding:20px;
-  background:#000;
-  color:#777;
+  padding:40px;
+  background:#050505;
+  color:#555;
+  border-top: 1px solid #111;
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <nav>
-  <h1>NEXAURON</h1>
+  <div class="logo-container">
+    <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Logo">
+    <h1>NEXAURON</h1>
+  </div>
   <div>
-    <a href="#">Games</a>
-    <a href="#">Team</a>
-    <a href="#">Support</a>
+    <a href="#games">الألعاب</a>
+    <a href="#team">الفريق</a>
+    <a href="#support">الدعم</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <h1>NEXAURON</h1>
-  <p>Future of Gaming Starts Here</p>
+  <p>نصنع تجارب لا تُنسى في عالم الألعاب</p>
 </div>
 
-<!-- GAMES -->
-<div class="section">
-  <h2>🎮 Our Games</h2>
-
+<div id="games" class="section">
+  <h2>🎮 مشاريعنا القادمة</h2>
   <div class="games">
-
     <div class="card">
-      <img src="https://picsum.photos/300/200">
-      <h3>Game One</h3>
-      <p>Coming Soon</p>
-      <a class="btn" href="#">Play</a>
+      <img src="https://picsum.photos/400/300?random=1" alt="Zombie Fight">
+      <h3>Zombie Fight</h3>
+      <p>قيد التطوير (Survival Horror)</p>
+      <a class="btn" href="#">قريباً</a>
     </div>
 
     <div class="card">
-      <img src="https://picsum.photos/301/200">
-      <h3>Game Two</h3>
-      <p>Coming Soon</p>
-      <a class="btn" href="#">Play</a>
+      <img src="https://picsum.photos/400/300?random=2" alt="Project 2">
+      <h3>مشروع سري جديد</h3>
+      <p>مرحلة التصميم</p>
+      <a class="btn" href="#">قريباً</a>
     </div>
+  </div>
+</div>
 
+<div id="team" class="section" style="background: rgba(255,255,255,0.02);">
+  <h2>👥 فريق العمل</h2>
+  <p>المؤسس والمطور الرئيسي: <strong>أحمد</strong></p>
+</div>
+
+<div id="support" class="section">
+  <h2>☕ ادعم الإبداع</h2>
+  <p style="color:#aaa; max-width: 600px; margin: 0 auto 30px;">نكساورون شركة ناشئة، دعمك يساهم في توفير سيرفرات أفضل وتطوير رسوميات الألعاب.</p>
+  
+  <a class="btn btn-paypal" href="https://paypal.me/AhmedNexauron" target="_blank">PayPal</a>
+  <a class="btn btn-kofi" href="https://ko-fi.com/AhmedNexauron" target="_blank">Ko-fi (بدون عمولة)</a>
+</div>
+
+<footer>
+  © 2026 NEXAURON Studios - جميع الحقوق محفوظة
+</footer>
+
+</body>
+</html>
   </div>
 </div>
 
