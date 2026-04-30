@@ -110,10 +110,10 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.8);
   }
 
-  /* HERO SECTION (PREMIUM LOOK) */
+  /* HERO SECTION */
   .hero { 
     text-align: center; 
-    padding: 10vh 20px 5vh; /* Reduced padding for slider */
+    padding: 8vh 20px 5vh; 
   }
 
   .main-title {
@@ -136,7 +136,7 @@
     line-height: 1.6;
   }
 
-  /* 🔥 LEGENDARY IMAGE SLIDER STYLES 🔥 */
+  /* SLIDER STYLES */
   .slider-container {
     max-width: 1200px;
     margin: 0 auto 60px;
@@ -145,14 +145,14 @@
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    aspect-ratio: 12 / 5; /* Forces a premium wide aspect ratio */
+    aspect-ratio: 16 / 7; 
   }
 
   .slider-wrapper {
     display: flex;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); /* Smooth, premium slide */
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
   }
 
   .slide {
@@ -164,15 +164,14 @@
   .slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image fills space perfectly */
+    object-fit: cover; 
     display: block;
   }
 
-  /* Gradient Overlay for Captions */
   .slide-overlay {
     position: absolute;
     bottom: 0; left: 0; width: 100%; height: 50%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     display: flex;
     align-items: flex-end;
     padding: 30px 40px;
@@ -187,7 +186,6 @@
     text-transform: uppercase;
   }
 
-  /* Slider Navigation Arrows */
   .slider-btn {
     position: absolute;
     top: 50%;
@@ -207,7 +205,6 @@
   .slider-btn.prev { left: 20px; }
   .slider-btn.next { right: 20px; }
 
-  /* Slider Dots/Pagination */
   .slider-dots {
     position: absolute;
     bottom: 20px;
@@ -226,14 +223,44 @@
   }
   .dot.active { background: #00ffd5; box-shadow: 0 0 10px rgba(0, 255, 213, 0.8); width: 25px; border-radius: 5px; }
 
-  footer { text-align: center; padding: 60px; color: #444; font-size: 12px; text-transform: uppercase; letter-spacing: 2px;}
+  /* FOOTER STYLES */
+  footer { 
+    text-align: center; 
+    padding: 40px; 
+    color: #555; 
+    font-size: 13px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    background: rgba(0,0,0,0.5);
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-content img {
+    height: 25px;
+    border-radius: 4px;
+    filter: grayscale(100%);
+    transition: 0.3s;
+  }
+
+  .footer-content:hover img {
+    filter: grayscale(0%);
+    box-shadow: 0 0 10px rgba(0, 255, 213, 0.3);
+  }
 
   @media (max-width: 768px) {
     nav { flex-direction: column; gap: 20px; }
-    .hero { padding-top: 10vh; }
+    .hero { padding-top: 5vh; }
     .slider-container { aspect-ratio: 16 / 9; margin-bottom: 40px; }
     .slide-caption { font-size: 1.1rem; padding: 20px; }
     .slider-btn { padding: 10px; font-size: 14px; }
+    .footer-content { flex-direction: column; }
   }
 </style>
 </head>
@@ -285,23 +312,30 @@
     <div class="slider-wrapper" id="sliderWrapper">
       
       <div class="slide">
-        <img src="https://via.placeholder.com/1200x500/111/00ffd5?text=Place+Safe+UE5+Image+Here" alt="Unreal Engine 5 Showcase">
+        <img src="https://ibb.co/84fpBLbJ" alt="NEXAURON Project 1">
         <div class="slide-overlay">
-          <div class="slide-caption">Powering Next-Gen Visuals with UE5</div>
+          <div class="slide-caption">Immersive Atmospheric Worlds</div>
         </div>
       </div>
 
       <div class="slide">
-        <img src="https://via.placeholder.com/1200x500/111/fff?text=Place+Safe+Unity+Image+Here" alt="Unity Engine Showcase">
+        <img src="https://ibb.co/gL6MNg6C" alt="NEXAURON Project 2">
         <div class="slide-overlay">
-          <div class="slide-caption">Flexible Development across Platforms</div>
+          <div class="slide-caption">Next-Gen Visual Fidelity</div>
         </div>
       </div>
 
       <div class="slide">
-        <img src="https://via.placeholder.com/1200x500/111/ff0050?text=Place+Safe+Gameplay+Image+Here" alt="Immersive Gameplay Across Genres">
+        <img src="https://ibb.co/5VPSswP" alt="NEXAURON Project 3">
         <div class="slide-overlay">
-          <div class="slide-caption">Diverse Multi-Genre Experiences</div>
+          <div class="slide-caption">Dynamic Combat Systems</div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://ibb.co/pvhRvKsV" alt="NEXAURON Project 4">
+        <div class="slide-overlay">
+          <div class="slide-caption">Engaging Storylines</div>
         </div>
       </div>
 
@@ -314,19 +348,22 @@
       <span class="dot active"></span>
       <span class="dot"></span>
       <span class="dot"></span>
+      <span class="dot"></span>
     </div>
   </div>
 </div>
 
 <footer>
-  © 2026 NEXAURON Studios - Creating the future of digital entertainment
+  <div class="footer-content">
+    <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Icon">
+    <span>© 2026 NEXAURON Studios - All Rights Reserved</span>
+  </div>
 </footer>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-  // FIREBASE INTEGRATION (Kept from previous steps)
   const firebaseConfig = {
     apiKey: "AIzaSyAAvZJhoEzwwWeVmUpKzyi-d-Rj7kOH7DE",
     authDomain: "nexauron-web.firebaseapp.com",
@@ -379,7 +416,7 @@
     }
   };
 
-  // 🔥 LEGENDARY SLIDER LOGIC 🔥
+  // SLIDER LOGIC
   const wrapper = document.getElementById('sliderWrapper');
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
@@ -390,67 +427,49 @@
   const slideCount = slides.length;
   let slideInterval;
 
-  // Function to update the slider position and dots
   function updateSlider(index) {
     wrapper.style.transform = `translateX(-${index * 100}%)`;
-    
-    // Update dots
     dots.forEach(dot => dot.classList.remove('active'));
     dots[index].classList.add('active');
-    
     currentIndex = index;
   }
 
-  // Next Slide Logic
   function nextSlide() {
     let index = (currentIndex + 1) % slideCount;
     updateSlider(index);
   }
 
-  // Previous Slide Logic
   function prevSlide() {
     let index = (currentIndex - 1 + slideCount) % slideCount;
     updateSlider(index);
   }
 
-  // Automatic Sliding
   function startAutoSlide() {
-    stopAutoSlide(); // Clear any existing interval
-    slideInterval = setInterval(nextSlide, 6000); // Change slide every 6 seconds
+    stopAutoSlide(); 
+    slideInterval = setInterval(nextSlide, 5000); 
   }
 
   function stopAutoSlide() {
     clearInterval(slideInterval);
   }
 
-  // Event Listeners for buttons
-  nextBtn.addEventListener('click', () => {
-    nextSlide();
-    startAutoSlide(); // Reset timer on click
-  });
-  
-  prevBtn.addEventListener('click', () => {
-    prevSlide();
-    startAutoSlide(); // Reset timer on click
-  });
+  nextBtn.addEventListener('click', () => { nextSlide(); startAutoSlide(); });
+  prevBtn.addEventListener('click', () => { prevSlide(); startAutoSlide(); });
 
-  // Event Listeners for dots
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       updateSlider(index);
-      startAutoSlide(); // Reset timer on click
+      startAutoSlide();
     });
   });
 
-  // Mouse over slider stops auto slide
   const sliderContainer = document.querySelector('.slider-container');
   sliderContainer.addEventListener('mouseenter', stopAutoSlide);
   sliderContainer.addEventListener('mouseleave', startAutoSlide);
 
-  // Initialize Slider
   startAutoSlide();
-
 </script>
 
 </body>
 </html>
+
