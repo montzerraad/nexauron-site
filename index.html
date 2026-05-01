@@ -74,7 +74,7 @@
   }
   .nav-links a:hover, .nav-links a.active { color: #00ffd5; border-bottom-color: #00ffd5; }
 
-  /* AUTH SECTION */
+  /* AUTH SECTION NEW UI */
   .auth-section {
     max-width: 1400px;
     margin: 20px auto 0;
@@ -82,32 +82,19 @@
     display: flex;
     justify-content: flex-end;
     padding: 0 25px;
+    position: relative;
   }
 
-  .login-card {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 8px 20px;
-    border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transition: 0.3s;
-  }
-  .login-card:hover { border-color: #00ffd5; background: rgba(0, 255, 213, 0.05); }
-
-  .auth-btn { background: none; border: none; color: white; cursor: pointer; font-size: 20px; transition: 0.2s; }
-  .auth-btn.google:hover { color: #db4437; }
-  .auth-btn.github:hover { color: #00ffd5; }
+  #showLoginBtn:hover { background: rgba(0, 255, 213, 0.1) !important; border-color: #00ffd5 !important; }
 
   .profile-ui { display: none; align-items: center; gap: 12px; cursor: pointer; }
-  .profile-ui img { width: 42px; height: 42px; border-radius: 50%; border: 2px solid #00ffd5; }
+  .profile-ui img { width: 42px; height: 42px; border-radius: 50%; border: 2px solid #00ffd5; object-fit: cover;}
   .profile-ui span { font-weight: bold; font-size: 14px; }
 
   .profile-modal {
     display: none;
     position: absolute;
-    top: 80px;
+    top: 60px;
     right: 25px;
     background: #0a0a0a;
     border: 1px solid #333;
@@ -250,6 +237,7 @@
     .slider-container { aspect-ratio: 16 / 9; margin-bottom: 40px; }
     .slider-btn { padding: 10px; font-size: 14px; }
     .footer-content { flex-direction: column; }
+    .login-card { top: 120px !important; }
   }
 </style>
 </head>
@@ -274,23 +262,32 @@
 
 <main>
   <div class="auth-section">
-    <div class="login-card" id="loginUI">
-      <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666;">Account</span>
-      <button class="auth-btn google" id="googleLogin" title="Login with Google"><i class="fab fa-google"></i></button>
-      <button class="auth-btn github" id="githubLogin" title="Login with GitHub"><i class="fab fa-github"></i></button>
+    <button id="showLoginBtn" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; letter-spacing: 1px; transition: 0.3s; z-index: 999;">SIGN IN</button>
+
+    <div class="login-card" id="loginUI" style="flex-direction: column; align-items: flex-start; padding: 25px; border-radius: 15px; width: 320px; position: absolute; top: 60px; right: 25px; display: none; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); box-shadow: 0 10px 40px rgba(0,0,0,0.9); border: 1px solid rgba(0, 255, 213, 0.2); z-index: 1000;">
+      <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #00ffd5; margin-bottom: 20px; font-weight: bold; display: block; width: 100%; text-align: center;">Access NEXAURON</span>
+      
+      <input type="email" id="emailInput" placeholder="Email Address" style="width: 100%; padding: 12px; margin-bottom: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 8px; outline: none; font-family: inherit;">
+      <input type="password" id="passInput" placeholder="Password" style="width: 100%; padding: 12px; margin-bottom: 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 8px; outline: none; font-family: inherit;">
+      
+      <button id="emailLoginBtn" style="width: 100%; padding: 12px; background: #00ffd5; color: #000; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; margin-bottom: 15px; transition: 0.3s; text-transform: uppercase;">Login / Sign Up</button>
+      
+      <div style="display: flex; gap: 10px; width: 100%;">
+        <button id="googleLogin" style="flex: 1; padding: 10px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: bold;"><i class="fab fa-google"></i> Google</button>
+        <button id="guestLogin" style="flex: 1; padding: 10px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: bold;"><i class="fas fa-user-secret"></i> Guest</button>
+      </div>
     </div>
 
     <div class="profile-ui" id="profileUI" onclick="toggleModal()">
       <span id="displayUserName">...</span>
-      <img id="userPhoto" src="" alt="Profile">
+      <img id="userPhoto" src="https://via.placeholder.com/42" alt="Profile">
     </div>
 
     <div class="profile-modal" id="profileModal">
       <h3 id="modalName">...</h3>
-      <p style="color: #00ffd5; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;">Official Developer</p>
-      <hr style="margin: 15px 0; border: 0; border-top: 1px solid #222;">
-      <p id="userJoinDate"><strong>Joined:</strong> --</p>
-      <button id="logoutBtn" style="width:100%; margin-top:20px; background:#fff; border:none; color:#000; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold; text-transform: uppercase;">Sign Out</button>
+      <p style="color: #00ffd5; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;">Player Access</p>
+      <hr style="margin: 15px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+      <button id="logoutBtn" style="width:100%; background:#fff; border:none; color:#000; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold; text-transform: uppercase; transition: 0.3s;">Sign Out</button>
     </div>
   </div>
 
@@ -300,28 +297,13 @@
     
     <div class="slider-container">
       <div class="slider-wrapper" id="sliderWrapper">
-        
-        <div class="slide">
-          <img src="https://tooltop.cloud/img/zgmk03Z2" alt="Slide 1">
-        </div>
-
-        <div class="slide">
-          <img src="https://tooltop.cloud/img/HUsSS1fS" alt="Slide 2">
-        </div>
-
-        <div class="slide">
-          <img src="https://tooltop.cloud/img/mLyBpNvT" alt="Slide 3">
-        </div>
-
-        <div class="slide">
-          <img src="https://tooltop.cloud/img/qJn6jduH" alt="Slide 4">
-        </div>
-
+        <div class="slide"><img src="https://tooltop.cloud/img/zgmk03Z2" alt="Slide 1"></div>
+        <div class="slide"><img src="https://tooltop.cloud/img/HUsSS1fS" alt="Slide 2"></div>
+        <div class="slide"><img src="https://tooltop.cloud/img/mLyBpNvT" alt="Slide 3"></div>
+        <div class="slide"><img src="https://tooltop.cloud/img/qJn6jduH" alt="Slide 4"></div>
       </div>
-
       <button class="slider-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
       <button class="slider-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-
       <div class="slider-dots" id="sliderDots">
         <span class="dot active"></span>
         <span class="dot"></span>
@@ -340,8 +322,12 @@
 </footer>
 
 <script type="module">
+  // FIREBASE LOGIC
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { 
+    getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, 
+    signInWithEmailAndPassword, createUserWithEmailAndPassword, signInAnonymously 
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAAvZJhoEzwwWeVmUpKzyi-d-Rj7kOH7DE",
@@ -355,43 +341,96 @@
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
+  const provider = new GoogleAuthProvider();
 
+  // عناصر واجهة المستخدم
+  const showLoginBtn = document.getElementById('showLoginBtn');
   const loginUI = document.getElementById('loginUI');
   const profileUI = document.getElementById('profileUI');
-  const profileModal = document.getElementById('profileModal');
   const displayUserName = document.getElementById('displayUserName');
   const userPhoto = document.getElementById('userPhoto');
   const modalName = document.getElementById('modalName');
-  const userJoinDate = document.getElementById('userJoinDate');
 
-  document.getElementById('googleLogin').onclick = () => signInWithPopup(auth, googleProvider);
-  document.getElementById('githubLogin').onclick = () => signInWithPopup(auth, githubProvider);
+  // فتح وإغلاق قائمة الدخول
+  showLoginBtn.onclick = () => {
+    loginUI.style.display = loginUI.style.display === 'flex' ? 'none' : 'flex';
+  };
+
+  // 1. الدخول بجوجل
+  document.getElementById('googleLogin').onclick = () => {
+    signInWithPopup(auth, provider).catch(err => alert("Google Login Error: " + err.message));
+  };
+
+  // 2. الدخول كضيف
+  document.getElementById('guestLogin').onclick = () => {
+    signInAnonymously(auth).catch(err => alert("Guest Login Error: " + err.message));
+  };
+
+  // 3. الدخول بالإيميل والباسورد
+  document.getElementById('emailLoginBtn').onclick = () => {
+    const email = document.getElementById('emailInput').value;
+    const pass = document.getElementById('passInput').value;
+    
+    if(!email || !pass) {
+      alert("Please enter both email and password.");
+      return;
+    }
+
+    signInWithEmailAndPassword(auth, email, pass)
+      .catch((error) => {
+        // إذا الحساب ماموجود، نسويله حساب جديد فوراً
+        if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found') {
+          createUserWithEmailAndPassword(auth, email, pass)
+            .then(() => alert("New Account Created Successfully!"))
+            .catch(err => alert("Error creating account: " + err.message));
+        } else {
+          alert(error.message);
+        }
+      });
+  };
+
+  // تسجيل الخروج
   document.getElementById('logoutBtn').onclick = () => signOut(auth).then(() => location.reload());
 
+  // مراقبة حالة المستخدم
   onAuthStateChanged(auth, (user) => {
     if (user) {
+      showLoginBtn.style.display = 'none';
       loginUI.style.display = 'none';
       profileUI.style.display = 'flex';
-      displayUserName.innerText = user.displayName;
-      modalName.innerText = user.displayName;
-      userPhoto.src = user.photoURL;
-      const date = new Date(user.metadata.creationTime);
-      userJoinDate.innerHTML = `<strong>Joined:</strong> ${date.toLocaleDateString()}`;
+      
+      let displayName = user.displayName;
+      let photo = user.photoURL;
+
+      if (user.isAnonymous) {
+        displayName = "Guest Player";
+        photo = "https://cdn-icons-png.flaticon.com/512/1144/1144760.png";
+      } else if (!displayName) {
+        displayName = user.email.split('@')[0];
+        photo = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+      }
+
+      displayUserName.innerText = displayName;
+      modalName.innerText = displayName;
+      userPhoto.src = photo;
     } else {
-      loginUI.style.display = 'flex';
+      showLoginBtn.style.display = 'block';
       profileUI.style.display = 'none';
     }
   });
 
   window.toggleModal = () => {
-    profileModal.style.display = (profileModal.style.display === 'block') ? 'none' : 'block';
+    const m = document.getElementById('profileModal');
+    m.style.display = m.style.display === 'block' ? 'none' : 'block';
   };
 
+  // إغلاق النوافذ عند النقر خارجها
   window.onclick = (e) => {
+    if (!e.target.closest('#loginUI') && !e.target.closest('#showLoginBtn')) {
+      loginUI.style.display = 'none';
+    }
     if (!e.target.closest('#profileUI') && !e.target.closest('#profileModal')) {
-      profileModal.style.display = 'none';
+      document.getElementById('profileModal').style.display = 'none';
     }
   };
 
@@ -413,34 +452,14 @@
     currentIndex = index;
   }
 
-  function nextSlide() {
-    let index = (currentIndex + 1) % slideCount;
-    updateSlider(index);
-  }
-
-  function prevSlide() {
-    let index = (currentIndex - 1 + slideCount) % slideCount;
-    updateSlider(index);
-  }
-
-  function startAutoSlide() {
-    stopAutoSlide(); 
-    slideInterval = setInterval(nextSlide, 5000); 
-  }
-
-  function stopAutoSlide() {
-    clearInterval(slideInterval);
-  }
+  function nextSlide() { updateSlider((currentIndex + 1) % slideCount); }
+  function prevSlide() { updateSlider((currentIndex - 1 + slideCount) % slideCount); }
+  function startAutoSlide() { stopAutoSlide(); slideInterval = setInterval(nextSlide, 5000); }
+  function stopAutoSlide() { clearInterval(slideInterval); }
 
   nextBtn.addEventListener('click', () => { nextSlide(); startAutoSlide(); });
   prevBtn.addEventListener('click', () => { prevSlide(); startAutoSlide(); });
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      updateSlider(index);
-      startAutoSlide();
-    });
-  });
+  dots.forEach((dot, index) => { dot.addEventListener('click', () => { updateSlider(index); startAutoSlide(); }); });
 
   const sliderContainer = document.querySelector('.slider-container');
   sliderContainer.addEventListener('mouseenter', stopAutoSlide);
